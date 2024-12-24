@@ -96,19 +96,10 @@ openEMS_grid.SetDeltaUnit(unit) # First call with empty mesh to set deltaUnit at
 #######################################################################################################################################
 # EXCITATION ext_gaussian
 #######################################################################################################################################
-f0 = 0.3*1000000000.0
-fc = 1.5*1000000000.0
-# FDTD.SetGaussExcite(f0, fc)
-FDTD.SetSinusExcite(fc);
-
+f0 = 1.5*1000000000.0
+fc = 0.5*1000000000.0
+FDTD.SetGaussExcite(f0, fc)
 max_res = C0 / (f0 + fc) / 20
-
-lambda0 = round(C0/f0/unit) # wavelength in mm
-print(f"lambda0:{lambda0}")
-print(f"max_res:{max_res}")
-
-max_res = floor(C0 / (f0+fc) / unit / 20) # cell size: lambda/20
-print(f"max_res 2:{max_res}")
 
 #######################################################################################################################################
 # MATERIALS AND GEOMETRY
@@ -119,12 +110,15 @@ materialList = {}
 materialList['Air'] = CSX.AddMaterial('Air')
 
 materialList['Air'].SetMaterialProperty(epsilon=1, mue=1)
+materialList['Air'].AddPolyhedronReader(os.path.join(currDir,'Cylinder_up_gen_model.stl'), priority=9700).ReadFile()
+materialList['Air'].AddPolyhedronReader(os.path.join(currDir,'Cylinder_midle_gen_model.stl'), priority=9800).ReadFile()
+materialList['Air'].AddPolyhedronReader(os.path.join(currDir,'Cylinder_down_gen_model.stl'), priority=9900).ReadFile()
 
 ## MATERIAL - PEC
 materialList['PEC'] = CSX.AddMetal('PEC')
 
-materialList['PEC'].AddPolyhedronReader(os.path.join(currDir,'up002_gen_model.stl'), priority=9900).ReadFile()
-materialList['PEC'].AddPolyhedronReader(os.path.join(currDir,'down001_gen_model.stl'), priority=10000).ReadFile()
+materialList['PEC'].AddPolyhedronReader(os.path.join(currDir,'up002_gen_model.stl'), priority=9500).ReadFile()
+materialList['PEC'].AddPolyhedronReader(os.path.join(currDir,'down001_gen_model.stl'), priority=9600).ReadFile()
 
 
 #######################################################################################################################################
@@ -132,28 +126,28 @@ materialList['PEC'].AddPolyhedronReader(os.path.join(currDir,'down001_gen_model.
 #######################################################################################################################################
 
 ## GRID - grid_1mm - Cylinder_up (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -286.522) & (mesh.x <= 288)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-286.522,288,1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -287.63) & (mesh.y <= 287.63)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-287.63,287.63,1)))
-mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= 10) & (mesh.z <= 650)))
-mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(10,650,1)))
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,1)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,1)))
+mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= 10) & (mesh.z <= 330)))
+mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(10,330,1)))
 
 ## GRID - grid_0.1mm - Cylinder_midle (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -287.066) & (mesh.x <= 288)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-287.066,288,0.1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -287.766) & (mesh.y <= 287.766)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-287.766,287.766,0.1)))
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,0.1)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,0.1)))
 mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -10) & (mesh.z <= 10)))
 mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-10,10,0.1)))
 
 ## GRID - grid_1mm - Cylinder_down (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -286.522) & (mesh.x <= 288)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-286.522,288,1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -287.63) & (mesh.y <= 287.63)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-287.63,287.63,1)))
-mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -650) & (mesh.z <= -10)))
-mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-650,-10,1)))
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,1)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,1)))
+mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -330) & (mesh.z <= -10)))
+mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-330,-10,1)))
 
 openEMS_grid.AddLine('x', mesh.x)
 openEMS_grid.AddLine('y', mesh.y)
@@ -171,7 +165,7 @@ portR = 50
 portUnits = 1
 portExcitationAmplitude = 1.0
 portDirection = 'z'
-port[1] = FDTD.AddLumpedPort(port_nr=1, R=portR*portUnits, start=portStart, stop=portStop, p_dir=portDirection, priority=9800, excite=1.0*portExcitationAmplitude)
+port[1] = FDTD.AddLumpedPort(port_nr=1, R=portR*portUnits, start=portStart, stop=portStop, p_dir=portDirection, priority=10000, excite=1.0*portExcitationAmplitude)
 portNamesAndNumbersList["portin001"] = 1;
 
 #######################################################################################################################################

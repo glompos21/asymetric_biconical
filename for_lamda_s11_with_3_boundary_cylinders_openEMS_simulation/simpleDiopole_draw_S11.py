@@ -75,7 +75,7 @@ openEMS_grid.SetDeltaUnit(unit) # First call with empty mesh to set deltaUnit at
 #######################################################################################################################################
 # EXCITATION ext_gaussian
 #######################################################################################################################################
-f0 = 0.5*1000000000.0
+f0 = 1.5*1000000000.0
 fc = 0.5*1000000000.0
 max_res = C0 / (f0 + fc) / 20
 
@@ -88,29 +88,29 @@ materialList = {}
 # GRID LINES
 #######################################################################################################################################
 
+## GRID - grid_1mm - Cylinder_up (Fixed Distance)
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,1)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,1)))
+mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= 10) & (mesh.z <= 330)))
+mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(10,330,1)))
+
 ## GRID - grid_0.1mm - Cylinder_midle (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -287.066) & (mesh.x <= 288)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-287.066,288,0.1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -287.766) & (mesh.y <= 287.766)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-287.766,287.766,0.1)))
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,0.1)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,0.1)))
 mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -10) & (mesh.z <= 10)))
 mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-10,10,0.1)))
 
-## GRID - grid_1mm - Cylinder_up (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -286.522) & (mesh.x <= 288)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-286.522,288,1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -287.63) & (mesh.y <= 287.63)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-287.63,287.63,1)))
-mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= 10) & (mesh.z <= 650)))
-mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(10,650,1)))
-
 ## GRID - grid_1mm - Cylinder_down (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -286.522) & (mesh.x <= 288)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-286.522,288,1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -287.63) & (mesh.y <= 287.63)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-287.63,287.63,1)))
-mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -650) & (mesh.z <= -10)))
-mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-650,-10,1)))
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,1)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,1)))
+mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -330) & (mesh.z <= -10)))
+mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-330,-10,1)))
 
 openEMS_grid.AddLine('x', mesh.x)
 openEMS_grid.AddLine('y', mesh.y)
@@ -128,7 +128,7 @@ portR = 50
 portUnits = 1
 portExcitationAmplitude = 1.0
 portDirection = 'z'
-port[1] = FDTD.AddLumpedPort(port_nr=1, R=portR*portUnits, start=portStart, stop=portStop, p_dir=portDirection, priority=9800, excite=1.0*portExcitationAmplitude)
+port[1] = FDTD.AddLumpedPort(port_nr=1, R=portR*portUnits, start=portStart, stop=portStop, p_dir=portDirection, priority=10000, excite=1.0*portExcitationAmplitude)
 portNamesAndNumbersList["portin001"] = 1;
 
 ## postprocessing & do the plots
