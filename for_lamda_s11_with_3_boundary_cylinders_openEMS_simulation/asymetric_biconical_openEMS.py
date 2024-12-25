@@ -68,8 +68,8 @@ if os.path.exists(Sim_Path):
 	os.mkdir(Sim_Path)    # create empty simulation folder
 
 ## setup FDTD parameter & excitation function
-max_timesteps = 10000
-min_decrement = 0.0001 # 10*log10(min_decrement) dB  (i.e. 1E-5 means -50 dB)
+max_timesteps = 100000
+min_decrement = 1e-4 # 10*log10(min_decrement) dB  (i.e. 1E-5 means -50 dB)
 CSX = CSXCAD.ContinuousStructure()
 FDTD = openEMS(NrTS=max_timesteps, EndCriteria=min_decrement)
 FDTD.SetCSX(CSX)
@@ -77,7 +77,7 @@ FDTD.SetCSX(CSX)
 #######################################################################################################################################
 # BOUNDARY CONDITIONS
 #######################################################################################################################################
-BC = ["MUR","MUR","MUR","MUR","PML_8","PML_8"]
+BC = ["MUR","MUR","MUR","MUR","MUR","PML_8"]
 FDTD.SetBoundaryCond(BC)
 
 #######################################################################################################################################

@@ -1,0 +1,268 @@
+ ---------------------------------------------------------------------- 
+ | openEMS 64bit -- version v0.0.36-16-g7d7688a
+ | (C) 2010-2023 Thorsten Liebig <thorsten.liebig@gmx.de>  GPL license
+ ---------------------------------------------------------------------- 
+        Used external libraries:
+                CSXCAD -- Version: v0.6.3-4-g9257bf1
+                hdf5   -- Version: 1.10.10
+                          compiled against: HDF5 library version: 1.10.10
+                tinyxml -- compiled against: 2.6.2
+                fparser
+                boost  -- compiled against: 1_83
+                vtk -- Version: 9.3.0
+                       compiled against: 9.3.0
+
+-----------------------------------------
+ Property #0 Type: "Material" Name: "Air"
+ Primitive Count        : 3
+ Coordinate System      : 0
+  -- Primitives: --
+  Primitive #0 Type: "PolyhedronReader" Priority: 9700
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (-92,-91.9714,5) P2: (92,91.9714,156.4)
+  Transform: None
+ Number of Vertices: 252
+ Number of Faces: 500
+ Number of invalid Faces: 0
+ ---- 
+  Primitive #1 Type: "PolyhedronReader" Priority: 9800
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (-92,-91.9714,-5) P2: (92,91.9714,5)
+  Transform: None
+ Number of Vertices: 252
+ Number of Faces: 500
+ Number of invalid Faces: 0
+ ---- 
+  Primitive #2 Type: "PolyhedronReader" Priority: 9900
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (-92,-91.9714,-156.4) P2: (92,91.9714,-5.00001)
+  Transform: None
+ Number of Vertices: 252
+ Number of Faces: 500
+ Number of invalid Faces: 0
+ --- Material --- 
+  Isotropy      : 1
+  Epsilon_R     : 1, 1, 1
+  Kappa         : 0, 0, 0
+  Mue_R         : 1, 1, 1
+  Sigma         : 0, 0, 0
+  Density       : 0
+-----------------------------------------
+ Property #1 Type: "Metal" Name: "PEC"
+ Primitive Count        : 2
+ Coordinate System      : 0
+  -- Primitives: --
+  Primitive #3 Type: "PolyhedronReader" Priority: 9500
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (-46.5,-46.4855,5) P2: (46.5,46.4855,80.7)
+  Transform: None
+ Number of Vertices: 1386
+ Number of Faces: 2768
+ Number of invalid Faces: 0
+ ---- 
+  Primitive #4 Type: "PolyhedronReader" Priority: 9600
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (-46.5,-46.4855,-80.7) P2: (46.5,46.4855,-5)
+  Transform: None
+ Number of Vertices: 1386
+ Number of Faces: 2768
+ Number of invalid Faces: 0
+-----------------------------------------
+ Property #2 Type: "LumpedElement" Name: "port_resist_1"
+ Primitive Count        : 1
+ Coordinate System      : 0
+  -- Primitives: --
+  Primitive #5 Type: "Box" Priority: 10000
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (-1.49121,-1.4978,-1) P2: (1.5,1.4978,4)
+  Transform: None
+  Start: -1.49121,-1.4978,-1
+  Stop : 1.5,1.4978,4
+ --- Lumped Element Properties --- 
+  Direction: 2
+  Resistance: 50
+  Capacity: nan
+  Inductance: nan
+  Type: Parallel
+-----------------------------------------
+ Property #3 Type: "Excitation" Name: "port_excite_1"
+ Primitive Count        : 1
+ Coordinate System      : 0
+  -- Primitives: --
+  Primitive #6 Type: "Box" Priority: 10000
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (-1.49121,-1.4978,-1) P2: (1.5,1.4978,4)
+  Transform: None
+  Start: -1.49121,-1.4978,-1
+  Stop : 1.5,1.4978,4
+ --- Excitation Properties --- 
+  Type: 0
+  Active directions: 1,1,1
+  Excitation    : 0, 0, -1
+  Weighting     : 1, 1, 1
+  Propagation Dir: 0, 0, 0
+  Delay         : 0
+-----------------------------------------
+ Property #4 Type: "ProbeBox" Name: "port_ut_1"
+ Primitive Count        : 1
+ Coordinate System      : 0
+  -- Primitives: --
+  Primitive #7 Type: "Box" Priority: 0
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (0.004395,0,-1) P2: (0.004395,0,4)
+  Transform: None
+  Start: 0.004395,0,-1
+  Stop : 0.004395,0,4
+-----------------------------------------
+ Property #5 Type: "ProbeBox" Name: "port_it_1"
+ Primitive Count        : 1
+ Coordinate System      : 0
+  -- Primitives: --
+  Primitive #8 Type: "Box" Priority: 0
+  Primary Coord-System: 2 Mesh Coord-System: 0 Bound-Box Coord-System: 0
+  Bounding Box (Valid: 1): P1: (-1.49121,-1.4978,1.5) P2: (1.5,1.4978,1.5)
+  Transform: None
+  Start: -1.49121,-1.4978,1.5
+  Stop : 1.5,1.4978,1.5
+Create FDTD operator (compressed SSE + multi-threading)
+Multithreaded operator using 12 threads.
+Operator::CalcTimestep_Var3: Smallest timestep (3.30278e-13s) found at position: 2 : 0;0;153
+Compressing the FDTD operator... this may take a while...
+------- Stat: FDTD Operator -------
+Dimensions              : 185x184x402 = 13684080 Cells (13.6841 MCells)
+Size of Operator        : 656835840 Byte (626.407 MiB) 
+Size of Field-Data      : 328417920 Byte (313.204 MiB) 
+-----------------------------------
+Background materials (epsR/mueR/kappa/sigma): 1/1/0/0
+-----------------------------------
+Number of PEC edges     : 34
+in x direction          : 16
+in y direction          : 18
+in z direction          : 0
+-----------------------------------
+Timestep (s)            : 3.30278e-13
+Timestep method name    : Rennings_2
+Nyquist criteria (TS)   : 756
+Nyquist criteria (s)    : 2.4969e-10
+-----------------------------------
+SSE compression enabled : yes
+Unique SSE operators    : 81
+-----------------------------------
+-----------------------------------
+--- Excitation Extension ---
+Voltage excitations     : 450    (0, 0, 450)
+Current excitations     : 0      (0, 0, 0)
+Excitation Length (TS)  : 17348
+Excitation Length (s)   : 5.72966e-09
+--- Mur ABC Extension ---
+ Active direction       : x at line: 0
+--- Mur ABC Extension ---
+ Active direction       : x at line: 184
+--- Mur ABC Extension ---
+ Active direction       : y at line: 0
+--- Mur ABC Extension ---
+ Active direction       : y at line: 183
+--- Mur ABC Extension ---
+ Active direction       : z at line: 0
+--- Uniaxial PML Extension ---
+ PML range              : [0,0,393] to [184,183,401]
+ Grading function       : " -log(1e-6)*log(2.5)/(2*dl*Z*(pow(2.5,W/dl)-1)) * pow(2.5, D/dl) "
+--- Series\Parallel Lumped RLC load ---
+Active cells            : 0
+-----------------------------------
+Creation time for operator: 255.347 s
+FDTD simulation size: 185x184x402 --> 1.36841e+07 FDTD cells 
+FDTD timestep is: 3.30278e-13 s; Nyquist rate: 756 timesteps @2.00248e+09 Hz
+Excitation signal length is: 17348 timesteps (5.72966e-09s)
+Max. number of timesteps: 100000 ( --> 5.76435 * Excitation signal length)
+Create FDTD engine (compressed SSE + multi-threading)
+---  Engine::SortExtensionByPriority() ---
+ #0: Uniaxial PML Extension (1000000)
+ #1: Series\Parallel Lumped RLC load (0)
+ #2: Mur ABC Extension (0)
+ #3: Mur ABC Extension (0)
+ #4: Mur ABC Extension (0)
+ #5: Mur ABC Extension (0)
+ #6: Mur ABC Extension (0)
+ #7: Excitation Extension (-1000)
+Multithreaded engine using 1 threads. Utilization: (185)
+Setting up processing...
+Warning: Unused primitive (type: PolyhedronReader) detected in property: PEC!
+Warning: Unused primitive (type: PolyhedronReader) detected in property: PEC!
+Running FDTD engine... this may take a while... grab a cup of coffee?!?
+[@       21s] Timestep:          189 || Speed:  118.8 MC/s (1.152e-01 s/TS) || Energy: ~3.32e-22 (- 0.00dB)
+Multithreaded engine using 2 threads. Utilization: (93;92)
+[@       35s] Timestep:          378 || Speed:  186.1 MC/s (7.353e-02 s/TS) || Energy: ~5.59e-21 (- 0.00dB)
+Multithreaded engine using 3 threads. Utilization: (62;62;61)
+[@       48s] Timestep:          567 || Speed:  198.5 MC/s (6.893e-02 s/TS) || Energy: ~2.14e-20 (- 0.00dB)
+Multithreaded engine using 4 threads. Utilization: (47;46;46;46)
+[@     1m02s] Timestep:          756 || Speed:  187.6 MC/s (7.294e-02 s/TS) || Energy: ~3.81e-20 (- 0.00dB)
+Multithreaded engine using 3 threads. Utilization: (62;62;61)
+Multithreaded Engine: Best performance found using 3 threads.
+[@     1m14s] Timestep:          945 || Speed:  206.8 MC/s (6.616e-02 s/TS) || Energy: ~2.69e-20 (- 1.52dB)
+[@     1m27s] Timestep:         1134 || Speed:  201.7 MC/s (6.783e-02 s/TS) || Energy: ~1.47e-21 (-14.14dB)
+[@     1m40s] Timestep:         1323 || Speed:  206.9 MC/s (6.612e-02 s/TS) || Energy: ~1.23e-19 (- 0.00dB)
+[@     1m53s] Timestep:         1512 || Speed:  197.2 MC/s (6.939e-02 s/TS) || Energy: ~6.12e-19 (- 0.00dB)
+[@     2m06s] Timestep:         1701 || Speed:  192.5 MC/s (7.109e-02 s/TS) || Energy: ~1.27e-18 (- 0.00dB)
+[@     2m20s] Timestep:         1890 || Speed:  185.4 MC/s (7.382e-02 s/TS) || Energy: ~1.20e-18 (- 0.26dB)
+[@     2m34s] Timestep:         2079 || Speed:  191.6 MC/s (7.141e-02 s/TS) || Energy: ~1.70e-19 (- 8.73dB)
+[@     2m47s] Timestep:         2268 || Speed:  201.1 MC/s (6.805e-02 s/TS) || Energy: ~1.38e-18 (- 0.00dB)
+[@     2m59s] Timestep:         2457 || Speed:  202.6 MC/s (6.754e-02 s/TS) || Energy: ~1.04e-17 (- 0.00dB)
+[@     3m14s] Timestep:         2646 || Speed:  180.8 MC/s (7.568e-02 s/TS) || Energy: ~2.55e-17 (- 0.00dB)
+[@     3m28s] Timestep:         2835 || Speed:  185.7 MC/s (7.370e-02 s/TS) || Energy: ~2.95e-17 (- 0.00dB)
+[@     3m41s] Timestep:         3024 || Speed:  194.0 MC/s (7.054e-02 s/TS) || Energy: ~1.03e-17 (- 4.56dB)
+[@     3m56s] Timestep:         3213 || Speed:  177.8 MC/s (7.698e-02 s/TS) || Energy: ~6.31e-18 (- 6.70dB)
+[@     4m09s] Timestep:         3402 || Speed:  188.4 MC/s (7.263e-02 s/TS) || Energy: ~1.03e-16 (- 0.00dB)
+[@     4m24s] Timestep:         3591 || Speed:  179.6 MC/s (7.617e-02 s/TS) || Energy: ~3.07e-16 (- 0.00dB)
+[@     4m37s] Timestep:         3780 || Speed:  188.7 MC/s (7.254e-02 s/TS) || Energy: ~4.21e-16 (- 0.00dB)
+[@     4m51s] Timestep:         3969 || Speed:  191.3 MC/s (7.153e-02 s/TS) || Energy: ~2.32e-16 (- 2.58dB)
+[@     5m05s] Timestep:         4158 || Speed:  189.9 MC/s (7.206e-02 s/TS) || Energy: ~8.91e-18 (-16.75dB)
+[@     5m18s] Timestep:         4347 || Speed:  191.4 MC/s (7.150e-02 s/TS) || Energy: ~5.70e-16 (- 0.00dB)
+[@     5m32s] Timestep:         4536 || Speed:  186.0 MC/s (7.356e-02 s/TS) || Energy: ~2.22e-15 (- 0.00dB)
+[@     5m46s] Timestep:         4725 || Speed:  178.1 MC/s (7.683e-02 s/TS) || Energy: ~3.56e-15 (- 0.00dB)
+[@     5m59s] Timestep:         4914 || Speed:  207.5 MC/s (6.594e-02 s/TS) || Energy: ~2.61e-15 (- 1.35dB)
+[@     6m11s] Timestep:         5103 || Speed:  206.8 MC/s (6.618e-02 s/TS) || Energy: ~3.09e-16 (-10.62dB)
+[@     6m27s] Timestep:         5292 || Speed:  170.5 MC/s (8.025e-02 s/TS) || Energy: ~1.60e-15 (- 3.47dB)
+[@     6m41s] Timestep:         5481 || Speed:  184.7 MC/s (7.408e-02 s/TS) || Energy: ~9.56e-15 (- 0.00dB)
+[@     6m55s] Timestep:         5670 || Speed:  185.2 MC/s (7.390e-02 s/TS) || Energy: ~1.81e-14 (- 0.00dB)
+[@     7m08s] Timestep:         5859 || Speed:  190.2 MC/s (7.196e-02 s/TS) || Energy: ~1.62e-14 (- 0.47dB)
+[@     7m22s] Timestep:         6048 || Speed:  188.3 MC/s (7.267e-02 s/TS) || Energy: ~4.51e-15 (- 6.03dB)
+[@     7m35s] Timestep:         6237 || Speed:  192.4 MC/s (7.111e-02 s/TS) || Energy: ~1.79e-15 (-10.06dB)
+[@     7m49s] Timestep:         6426 || Speed:  187.5 MC/s (7.297e-02 s/TS) || Energy: ~2.39e-14 (- 0.00dB)
+[@     8m03s] Timestep:         6615 || Speed:  190.3 MC/s (7.191e-02 s/TS) || Energy: ~5.53e-14 (- 0.00dB)
+[@     8m16s] Timestep:         6804 || Speed:  190.2 MC/s (7.193e-02 s/TS) || Energy: ~5.86e-14 (- 0.00dB)
+[@     8m31s] Timestep:         6993 || Speed:  176.2 MC/s (7.766e-02 s/TS) || Energy: ~2.53e-14 (- 3.65dB)
+[@     8m45s] Timestep:         7182 || Speed:  187.9 MC/s (7.282e-02 s/TS) || Energy: ~7.11e-16 (-19.16dB)
+[@     8m59s] Timestep:         7371 || Speed:  185.4 MC/s (7.381e-02 s/TS) || Energy: ~3.33e-14 (- 2.46dB)
+[@     9m13s] Timestep:         7560 || Speed:  187.0 MC/s (7.317e-02 s/TS) || Energy: ~1.01e-13 (- 0.00dB)
+[@     9m26s] Timestep:         7749 || Speed:  186.3 MC/s (7.346e-02 s/TS) || Energy: ~1.26e-13 (- 0.00dB)
+[@     9m40s] Timestep:         7938 || Speed:  186.6 MC/s (7.334e-02 s/TS) || Energy: ~7.15e-14 (- 2.45dB)
+[@     9m54s] Timestep:         8127 || Speed:  188.5 MC/s (7.258e-02 s/TS) || Energy: ~7.01e-15 (-12.54dB)
+[@    10m07s] Timestep:         8316 || Speed:  193.6 MC/s (7.066e-02 s/TS) || Energy: ~2.34e-14 (- 7.30dB)
+[@    10m21s] Timestep:         8505 || Speed:  188.3 MC/s (7.268e-02 s/TS) || Energy: ~1.10e-13 (- 0.56dB)
+[@    10m34s] Timestep:         8674 || Speed:  181.1 MC/s (7.557e-02 s/TS) || Energy: ~1.61e-13 (- 0.00dB)
+[@    10m49s] Timestep:         8883 || Speed:  187.3 MC/s (7.308e-02 s/TS) || Energy: ~1.12e-13 (- 1.56dB)
+[@    11m03s] Timestep:         9072 || Speed:  182.0 MC/s (7.517e-02 s/TS) || Energy: ~2.48e-14 (- 8.13dB)
+[@    11m18s] Timestep:         9261 || Speed:  182.1 MC/s (7.516e-02 s/TS) || Energy: ~6.34e-15 (-14.05dB)
+[@    11m31s] Timestep:         9450 || Speed:  189.2 MC/s (7.233e-02 s/TS) || Energy: ~6.98e-14 (- 3.63dB)
+[@    11m45s] Timestep:         9639 || Speed:  189.3 MC/s (7.228e-02 s/TS) || Energy: ~1.25e-13 (- 1.09dB)
+[@    11m59s] Timestep:         9828 || Speed:  186.7 MC/s (7.328e-02 s/TS) || Energy: ~1.03e-13 (- 1.95dB)
+[@    12m13s] Timestep:        10017 || Speed:  187.0 MC/s (7.319e-02 s/TS) || Energy: ~3.46e-14 (- 6.68dB)
+[@    12m27s] Timestep:        10206 || Speed:  185.4 MC/s (7.380e-02 s/TS) || Energy: ~7.56e-16 (-23.28dB)
+[@    12m41s] Timestep:        10395 || Speed:  175.6 MC/s (7.791e-02 s/TS) || Energy: ~2.45e-14 (- 8.18dB)
+[@    12m55s] Timestep:        10584 || Speed:  184.7 MC/s (7.411e-02 s/TS) || Energy: ~5.83e-14 (- 4.41dB)
+[@    13m09s] Timestep:        10773 || Speed:  182.7 MC/s (7.488e-02 s/TS) || Energy: ~5.58e-14 (- 4.60dB)
+[@    13m23s] Timestep:        10962 || Speed:  188.8 MC/s (7.246e-02 s/TS) || Energy: ~2.46e-14 (- 8.16dB)
+[@    13m38s] Timestep:        11151 || Speed:  176.8 MC/s (7.740e-02 s/TS) || Energy: ~2.00e-15 (-19.06dB)
+[@    13m52s] Timestep:        11340 || Speed:  182.1 MC/s (7.513e-02 s/TS) || Energy: ~4.30e-15 (-15.74dB)
+[@    14m06s] Timestep:        11529 || Speed:  186.7 MC/s (7.329e-02 s/TS) || Energy: ~1.61e-14 (-10.01dB)
+[@    14m20s] Timestep:        11718 || Speed:  183.1 MC/s (7.473e-02 s/TS) || Energy: ~1.82e-14 (- 9.47dB)
+[@    14m34s] Timestep:        11907 || Speed:  182.0 MC/s (7.518e-02 s/TS) || Energy: ~9.78e-15 (-12.16dB)
+[@    14m49s] Timestep:        12096 || Speed:  177.9 MC/s (7.690e-02 s/TS) || Energy: ~1.71e-15 (-19.73dB)
+[@    15m03s] Timestep:        12285 || Speed:  178.0 MC/s (7.689e-02 s/TS) || Energy: ~2.87e-16 (-27.49dB)
+[@    15m17s] Timestep:        12474 || Speed:  186.8 MC/s (7.326e-02 s/TS) || Energy: ~2.57e-15 (-17.97dB)
+[@    15m31s] Timestep:        12663 || Speed:  182.9 MC/s (7.480e-02 s/TS) || Energy: ~3.58e-15 (-16.53dB)
+[@    15m45s] Timestep:        12852 || Speed:  182.3 MC/s (7.507e-02 s/TS) || Energy: ~2.27e-15 (-18.52dB)
+[@    15m59s] Timestep:        13041 || Speed:  183.0 MC/s (7.479e-02 s/TS) || Energy: ~5.98e-16 (-24.30dB)
+[@    16m13s] Timestep:        13230 || Speed:  186.1 MC/s (7.355e-02 s/TS) || Energy: ~1.23e-17 (-41.17dB)
+Time for 13230 iterations with 13684080.00 cells : 973.91 sec
