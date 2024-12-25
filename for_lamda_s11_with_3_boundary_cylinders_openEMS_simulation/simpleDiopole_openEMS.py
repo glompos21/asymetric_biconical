@@ -68,8 +68,8 @@ if os.path.exists(Sim_Path):
 	os.mkdir(Sim_Path)    # create empty simulation folder
 
 ## setup FDTD parameter & excitation function
-max_timesteps = 1000000
-min_decrement = 1e-05 # 10*log10(min_decrement) dB  (i.e. 1E-5 means -50 dB)
+max_timesteps = 10000
+min_decrement = 0.0001 # 10*log10(min_decrement) dB  (i.e. 1E-5 means -50 dB)
 CSX = CSXCAD.ContinuousStructure()
 FDTD = openEMS(NrTS=max_timesteps, EndCriteria=min_decrement)
 FDTD.SetCSX(CSX)
@@ -126,28 +126,28 @@ materialList['PEC'].AddPolyhedronReader(os.path.join(currDir,'down001_gen_model.
 #######################################################################################################################################
 
 ## GRID - grid_1mm - Cylinder_up (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,1)))
-mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= 10) & (mesh.z <= 330)))
-mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(10,330,1)))
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -215.951) & (mesh.x <= 216)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-215.951,216,1)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -215.988) & (mesh.y <= 215.988)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-215.988,215.988,1)))
+mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= 10) & (mesh.z <= 490)))
+mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(10,490,1)))
 
 ## GRID - grid_0.1mm - Cylinder_midle (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,0.1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,0.1)))
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -215.951) & (mesh.x <= 216)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-215.951,216,0.01)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -215.988) & (mesh.y <= 215.988)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-215.988,215.988,0.01)))
 mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -10) & (mesh.z <= 10)))
-mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-10,10,0.1)))
+mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-10,10,0.01)))
 
 ## GRID - grid_1mm - Cylinder_down (Fixed Distance)
-mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -144) & (mesh.x <= 144)))
-mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-144,144,1)))
-mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -143.955) & (mesh.y <= 143.955)))
-mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-143.955,143.955,1)))
-mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -330) & (mesh.z <= -10)))
-mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-330,-10,1)))
+mesh.x = np.delete(mesh.x, np.argwhere((mesh.x >= -215.951) & (mesh.x <= 216)))
+mesh.x = np.concatenate((mesh.x, arangeWithEndpoint(-215.951,216,1)))
+mesh.y = np.delete(mesh.y, np.argwhere((mesh.y >= -215.988) & (mesh.y <= 215.988)))
+mesh.y = np.concatenate((mesh.y, arangeWithEndpoint(-215.988,215.988,1)))
+mesh.z = np.delete(mesh.z, np.argwhere((mesh.z >= -490) & (mesh.z <= -10)))
+mesh.z = np.concatenate((mesh.z, arangeWithEndpoint(-490,-10,1)))
 
 openEMS_grid.AddLine('x', mesh.x)
 openEMS_grid.AddLine('y', mesh.y)

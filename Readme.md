@@ -7,7 +7,7 @@ Reading different articlie come on [Design of an asymmetric capped biconical ant
 
 ## 3D modeling on FreeCAD
 
-Using the FreeCAD v1.0 an asymetric biconical antenna have been designed. The diamentions are set by a variable set named __VarSet002__
+Using the FreeCAD v1.0 an asymetric biconical antenna have been designed. The diamentions are set by a variable set named __VarSet002__. Use **VarSet002.Base_air_multiplier** to change the diamention of the box around the antenna to be used as boundary conditions.
 
 ![antenna1](./images/antenna_1.png)
 
